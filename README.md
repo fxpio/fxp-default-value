@@ -5,7 +5,7 @@ Sonatra Default Value
 [![Build Status](https://img.shields.io/travis/sonatra/sonatra-default-value/master.svg)](https://travis-ci.org/sonatra/sonatra-default-value)
 [![Coverage Status](https://img.shields.io/coveralls/sonatra/sonatra-default-value/master.svg)](https://coveralls.io/r/sonatra/sonatra-default-value?branch=master)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/sonatra/sonatra-default-value/master.svg)](https://scrutinizer-ci.com/g/sonatra/sonatra-default-value?branch=master)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/b5cced51-b0ef-4216-9733-21e1c93f4231.svg)](https://insight.sensiolabs.com/projects/b5cced51-b0ef-4216-9733-21e1c93f4231)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/e5c14e8b-ab5f-4c55-a0db-92a45d623c6c.svg)](https://insight.sensiolabs.com/projects/e5c14e8b-ab5f-4c55-a0db-92a45d623c6c)
 
 The Sonatra DefaultValue creates or injects the default values ​​with a advanced configuration in the object.
 
