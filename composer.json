@@ -1,9 +1,9 @@
 {
-    "name": "sonatra/default-value-bundle",
-    "type": "symfony-bundle",
+    "name": "sonatra/default-value",
+    "type": "library",
     "description": "Creates or injects the default values ​​with a advanced configuration in the object",
     "keywords": ["default value", "object", "entity", "document"],
-    "homepage": "https://github.com/sonatra/SonatraDefaultValueBundle",
+    "homepage": "https://github.com/sonatra/sonatra-default-value",
     "license": "MIT",
     "authors": [
         {
@@ -13,12 +13,15 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "symfony/framework-bundle": "~3.0",
         "symfony/options-resolver": "~3.0",
         "symfony/property-access": "~3.0"
     },
+    "require-dev": {
+        "symfony/dependency-injection": "~3.0",
+        "symfony/security": "~3.0"
+    },
     "autoload": {
-        "psr-4": { "Sonatra\\Bundle\\DefaultValueBundle\\": "" },
+        "psr-4": { "Sonatra\\Component\\DefaultValue\\": "" },
         "exclude-from-classmap": [
             "/Tests/"
         ]
