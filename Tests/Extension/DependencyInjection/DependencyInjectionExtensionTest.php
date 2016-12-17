@@ -11,7 +11,6 @@
 
 namespace Sonatra\Component\DefaultValue\Tests\Extension\DependencyInjection;
 
-use Sonatra\Component\DefaultValue\Exception\InvalidArgumentException;
 use Sonatra\Component\DefaultValue\Extension\DependencyInjection\DependencyInjectionExtension;
 use Sonatra\Component\DefaultValue\ObjectTypeExtensionInterface;
 use Sonatra\Component\DefaultValue\ObjectTypeInterface;
@@ -72,7 +71,7 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \Sonatra\Component\DefaultValue\Exception\InvalidArgumentException
      * @expectedExceptionMessageRegExp /The object default value type "([\w\\]+)" is not registered with the service container./
      */
     public function testGetInvalidType()
@@ -81,7 +80,7 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \Sonatra\Component\DefaultValue\Exception\InvalidArgumentException
      * @expectedExceptionMessageRegExp /The object default value type class name specified for the service "([\w\.\_]+)" does not match the actual class name. Expected "([\w\\]+)", given "([\w\\]+)"/
      */
     public function testGetInvalidClass()
