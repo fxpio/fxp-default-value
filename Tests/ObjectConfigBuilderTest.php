@@ -102,7 +102,7 @@ class ObjectConfigBuilderTest extends \PHPUnit_Framework_TestCase
     {
         $opts = $this->config->getOptions();
 
-        $this->assertTrue(is_array($opts));
+        $this->assertInternalType('array', $opts);
     }
 
     public function testHasAndGetOption()
@@ -153,7 +153,7 @@ class ObjectConfigBuilderTest extends \PHPUnit_Framework_TestCase
         $this->config->setData($data);
         $properties = $this->config->getProperties();
 
-        $this->assertTrue(is_array($properties));
+        $this->assertInternalType('array', $properties);
         $this->assertCount(9, $properties);
     }
 

@@ -83,7 +83,7 @@ class ObjectRegistryTest extends \PHPUnit_Framework_TestCase
     public function testGetExtensions()
     {
         $exts = $this->registry->getExtensions();
-        $this->assertTrue(is_array($exts));
+        $this->assertInternalType('array', $exts);
         $this->assertCount(1, $exts);
     }
 }

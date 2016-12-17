@@ -66,7 +66,7 @@ abstract class AbstractBaseExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $exts = $this->extension->getTypeExtensions('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\User');
 
-        $this->assertTrue(is_array($exts));
+        $this->assertInternalType('array', $exts);
         $this->assertCount(1, $exts);
 
         /* @var ObjectTypeExtensionInterface $ext */
