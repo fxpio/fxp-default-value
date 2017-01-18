@@ -11,8 +11,8 @@
 
 namespace Sonatra\Component\DefaultValue\Extension\DependencyInjection;
 
-use Sonatra\Component\DefaultValue\ObjectExtensionInterface;
 use Sonatra\Component\DefaultValue\Exception\InvalidArgumentException;
+use Sonatra\Component\DefaultValue\ObjectExtensionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

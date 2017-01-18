@@ -11,8 +11,8 @@
 
 namespace Sonatra\Component\DefaultValue;
 
-use Sonatra\Component\DefaultValue\Exception\UnexpectedTypeException;
 use Sonatra\Component\DefaultValue\Exception\ExceptionInterface;
+use Sonatra\Component\DefaultValue\Exception\UnexpectedTypeException;
 use Sonatra\Component\DefaultValue\Extension\Core\Type\DefaultType;
 
 /**

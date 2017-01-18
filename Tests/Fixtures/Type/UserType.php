@@ -12,8 +12,8 @@
 namespace Sonatra\Component\DefaultValue\Tests\Fixtures\Type;
 
 use Sonatra\Component\DefaultValue\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Sonatra\Component\DefaultValue\ObjectBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
