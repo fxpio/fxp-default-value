@@ -11,12 +11,13 @@
 
 namespace Sonatra\Component\DefaultValue\Tests\Extension\Core;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\Extension\Core\CoreExtension;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class CoreExtensionTest extends \PHPUnit_Framework_TestCase
+class CoreExtensionTest extends TestCase
 {
     /**
      * @var CoreExtension

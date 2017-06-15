@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\DefaultValue\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\Extension\Core\Type\DefaultType;
 use Sonatra\Component\DefaultValue\ObjectFactory;
 use Sonatra\Component\DefaultValue\ObjectFactoryInterface;
@@ -24,7 +25,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ObjectFactoryTest extends \PHPUnit_Framework_TestCase
+class ObjectFactoryTest extends TestCase
 {
     /**
      * @var ObjectFactoryInterface

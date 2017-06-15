@@ -11,13 +11,14 @@
 
 namespace Sonatra\Component\DefaultValue\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\ObjectExtensionInterface;
 use Sonatra\Component\DefaultValue\ObjectTypeExtensionInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-abstract class AbstractBaseExtensionTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractBaseExtensionTest extends TestCase
 {
     /**
      * @var ObjectExtensionInterface

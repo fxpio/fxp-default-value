@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\DefaultValue\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\ObjectBuilder;
 use Sonatra\Component\DefaultValue\ObjectBuilderInterface;
 use Sonatra\Component\DefaultValue\ObjectFactoryInterface;
@@ -21,7 +22,7 @@ use Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType;
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ObjectBuilderTest extends \PHPUnit_Framework_TestCase
+class ObjectBuilderTest extends TestCase
 {
     /**
      * @var ObjectBuilderInterface

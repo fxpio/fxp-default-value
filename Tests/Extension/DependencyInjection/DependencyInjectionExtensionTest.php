@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\DefaultValue\Tests\Extension\DependencyInjection;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\Extension\DependencyInjection\DependencyInjectionExtension;
 use Sonatra\Component\DefaultValue\ObjectTypeExtensionInterface;
 use Sonatra\Component\DefaultValue\ObjectTypeInterface;
@@ -24,7 +25,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
+class DependencyInjectionExtensionTest extends TestCase
 {
     /**
      * @var DependencyInjectionExtension

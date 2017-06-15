@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\DefaultValue\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\ObjectRegistry;
 use Sonatra\Component\DefaultValue\ObjectRegistryInterface;
 use Sonatra\Component\DefaultValue\ResolvedObjectTypeFactory;
@@ -19,7 +20,7 @@ use Sonatra\Component\DefaultValue\Tests\Fixtures\TestExtension;
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ObjectRegistryTest extends \PHPUnit_Framework_TestCase
+class ObjectRegistryTest extends TestCase
 {
     /**
      * @var ObjectRegistryInterface

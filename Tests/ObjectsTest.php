@@ -11,12 +11,13 @@
 
 namespace Sonatra\Component\DefaultValue\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\Objects;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ObjectsTest extends \PHPUnit_Framework_TestCase
+class ObjectsTest extends TestCase
 {
     public function testObjectFactoryBuilderCreator()
     {

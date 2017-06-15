@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\DefaultValue\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\Extension\Core\Type\DefaultType;
 use Sonatra\Component\DefaultValue\ObjectFactoryInterface;
 use Sonatra\Component\DefaultValue\ObjectTypeInterface;
@@ -22,7 +23,7 @@ use Sonatra\Component\DefaultValue\Tests\Fixtures\Type\UserType;
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ResolvedObjectTypeTest extends \PHPUnit_Framework_TestCase
+class ResolvedObjectTypeTest extends TestCase
 {
     /**
      * @expectedException \Sonatra\Component\DefaultValue\Exception\InvalidArgumentException

@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\DefaultValue\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\ObjectConfigBuilder;
 use Sonatra\Component\DefaultValue\ObjectConfigBuilderInterface;
 use Sonatra\Component\DefaultValue\ResolvedObjectType;
@@ -22,7 +23,7 @@ use Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooType;
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ObjectConfigBuilderTest extends \PHPUnit_Framework_TestCase
+class ObjectConfigBuilderTest extends TestCase
 {
     /**
      * @var ObjectConfigBuilderInterface

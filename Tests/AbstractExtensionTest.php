@@ -11,6 +11,7 @@
 
 namespace Sonatra\Component\DefaultValue\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sonatra\Component\DefaultValue\ObjectExtensionInterface;
 use Sonatra\Component\DefaultValue\Tests\Fixtures\TestExpectedExtension;
 use Sonatra\Component\DefaultValue\Tests\Fixtures\TestExtension;
@@ -18,7 +19,7 @@ use Sonatra\Component\DefaultValue\Tests\Fixtures\TestExtension;
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class AbstractExtensionTest extends \PHPUnit_Framework_TestCase
+class AbstractExtensionTest extends TestCase
 {
     /**
      * @expectedException \Sonatra\Component\DefaultValue\Exception\InvalidArgumentException
