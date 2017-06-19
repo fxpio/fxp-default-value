@@ -132,17 +132,13 @@ class ObjectRegistry implements ObjectRegistryInterface
 
         foreach ($this->extensions as $extension) {
             /* @var ObjectExtensionInterface $extension */
-            $typeExtensions = array_merge(
-                $typeExtensions,
+            $typeExtensions = array_merge($typeExtensions,
                 $extension->getTypeExtensions($type->getClass())
             );
         }
 
-        $rType = $this->resolvedTypeFactory->createResolvedType(
-                $type,
-                $typeExtensions,
-                $parentType ? $this->getType($parentType) : null
-        );
+        $parent = $parentType ? $this->getType($parentType) : null;
+        $rType = $this->resolvedTypeFactory->createResolvedType($type, $typeExtensions, $parent);
 
         $this->types[$type->getClass()] = $rType;
     }

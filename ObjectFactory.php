@@ -98,8 +98,7 @@ class ObjectFactory implements ObjectFactoryInterface
             $parentType = $this->registry->getType($parentType);
         }
 
-        return $this->resolvedTypeFactory->createResolvedType(
-            $type,
+        return $this->resolvedTypeFactory->createResolvedType($type,
             // Type extensions are not supported for unregistered type instances,
             // i.e. type instances that are passed to the ObjectFactory directly,
             // nor for their parents, if getParent() also returns a type instance.

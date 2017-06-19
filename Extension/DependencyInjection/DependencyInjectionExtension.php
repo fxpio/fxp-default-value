@@ -60,11 +60,7 @@ class DependencyInjectionExtension implements ObjectExtensionInterface
 
         if ($type->getClass() !== $name) {
             throw new InvalidArgumentException(
-                    sprintf('The object default value type class name specified for the service "%s" does not match the actual class name. Expected "%s", given "%s"',
-                            $this->typeServiceIds[$name],
-                            $name,
-                            $type->getClass()
-                    ));
+                    sprintf('The object default value type class name specified for the service "%s" does not match the actual class name. Expected "%s", given "%s"', $this->typeServiceIds[$name], $name, $type->getClass()));
         }
 
         return $type;
