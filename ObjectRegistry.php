@@ -122,8 +122,6 @@ class ObjectRegistry implements ObjectRegistryInterface
      * it with its parent type.
      *
      * @param ObjectTypeInterface $type The type to resolve
-     *
-     * @return ResolvedObjectTypeInterface The resolved type
      */
     private function resolveAndAddType(ObjectTypeInterface $type)
     {
@@ -133,6 +131,7 @@ class ObjectRegistry implements ObjectRegistryInterface
         foreach ($this->extensions as $extension) {
             /* @var ObjectExtensionInterface $extension */
             $typeExtensions = array_merge($typeExtensions,
+                $extension->getTypeExtensions('default'),
                 $extension->getTypeExtensions($type->getClass())
             );
         }
