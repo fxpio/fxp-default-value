@@ -204,7 +204,7 @@ class ObjectConfigBuilderTest extends TestCase
 
         $this->assertEquals('hello world', $data->getBar());
         $this->assertEquals('42', $data->getCustomField());
-        $this->assertEquals(false, $this->config->getProperty('privateProperty'));
+        $this->assertFalse($this->config->getProperty('privateProperty'));
 
         $config = $this->config->setProperties(array(
                 'bar' => 'value edited',
@@ -215,7 +215,7 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertInstanceOf('Sonatra\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
         $this->assertEquals('value edited', $data->getBar());
         $this->assertEquals('21', $data->getCustomField());
-        $this->assertEquals(true, $this->config->getProperty('privateProperty'));
+        $this->assertTrue($this->config->getProperty('privateProperty'));
     }
 
     /**
