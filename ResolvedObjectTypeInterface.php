@@ -54,7 +54,7 @@ interface ResolvedObjectTypeInterface
      *
      * @return ObjectBuilderInterface The created object default value builder
      */
-    public function createBuilder(ObjectFactoryInterface $factory, array $options = array());
+    public function createBuilder(ObjectFactoryInterface $factory, array $options = []);
 
     /**
      * Constructs a new object instance.

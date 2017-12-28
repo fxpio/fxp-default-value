@@ -25,6 +25,6 @@ class CoreExtension extends AbstractExtension
      */
     protected function loadTypes()
     {
-        return array();
+        return [];
     }
 }

@@ -23,12 +23,12 @@ class PreloadedExtension implements ObjectExtensionInterface
     /**
      * @var array
      */
-    private $types = array();
+    private $types = [];
 
     /**
      * @var array
      */
-    private $typeExtensions = array();
+    private $typeExtensions = [];
 
     /**
      * Creates a new preloaded extension.
@@ -69,7 +69,7 @@ class PreloadedExtension implements ObjectExtensionInterface
     {
         return isset($this->typeExtensions[$name])
             ? $this->typeExtensions[$name]
-            : array();
+            : [];
     }
 
     /**

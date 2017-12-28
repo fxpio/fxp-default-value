@@ -61,9 +61,9 @@ class ObjectFactoryBuilderTest extends TestCase
 
     public function testAddExtensions()
     {
-        $exts = array(
+        $exts = [
             $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectExtensionInterface')->getMock(),
-        );
+        ];
 
         $builder = $this->builder->addExtensions($exts);
 
@@ -82,9 +82,9 @@ class ObjectFactoryBuilderTest extends TestCase
 
     public function testAddTypes()
     {
-        $types = array(
+        $types = [
             $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectTypeInterface')->getMock(),
-        );
+        ];
 
         $builder = $this->builder->addTypes($types);
 
@@ -103,9 +103,9 @@ class ObjectFactoryBuilderTest extends TestCase
 
     public function testAddTypeExtensions()
     {
-        $exts = array(
+        $exts = [
             $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectTypeExtensionInterface')->getMock(),
-        );
+        ];
 
         $builder = $this->builder->addTypeExtensions($exts);
 

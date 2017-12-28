@@ -32,10 +32,10 @@ class ObjectConfigBuilderTest extends TestCase
 
     protected function setUp()
     {
-        $options = array(
+        $options = [
             'username' => 'foo',
             'password' => 'bar',
-        );
+        ];
         $rType = new ResolvedObjectType(new FooCompletType());
 
         $this->config = new ObjectConfigBuilder($options);
@@ -206,11 +206,11 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertEquals('42', $data->getCustomField());
         $this->assertFalse($this->config->getProperty('privateProperty'));
 
-        $config = $this->config->setProperties(array(
+        $config = $this->config->setProperties([
                 'bar' => 'value edited',
                 'customField' => '21',
                 'privateProperty' => true,
-        ));
+        ]);
 
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
         $this->assertEquals('value edited', $data->getBar());
@@ -227,9 +227,9 @@ class ObjectConfigBuilderTest extends TestCase
         $this->config->setData($data);
         $this->config->getObjectConfig();
 
-        $this->config->setProperties(array(
+        $this->config->setProperties([
             'bar' => 'value edited',
-        ));
+        ]);
     }
 
     /**
@@ -240,9 +240,9 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertNull($this->config->getData());
         $this->assertNull($this->config->getDataClass());
 
-        $this->config->setProperties(array(
+        $this->config->setProperties([
             'property' => 'value',
-        ));
+        ]);
     }
 
     /**
@@ -253,9 +253,9 @@ class ObjectConfigBuilderTest extends TestCase
         $data = new Foobar();
         $this->config->setData($data);
 
-        $this->config->setProperties(array(
+        $this->config->setProperties([
             'invalidProperty' => 'value',
-        ));
+        ]);
     }
 
     public function testSetProperty()

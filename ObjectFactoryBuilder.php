@@ -26,17 +26,17 @@ class ObjectFactoryBuilder implements ObjectFactoryBuilderInterface
     /**
      * @var array
      */
-    private $extensions = array();
+    private $extensions = [];
 
     /**
      * @var array
      */
-    private $types = array();
+    private $types = [];
 
     /**
      * @var array
      */
-    private $typeExtensions = array();
+    private $typeExtensions = [];
 
     /**
      * {@inheritdoc}

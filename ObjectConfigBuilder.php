@@ -61,7 +61,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
      *
      * @param array $options The object default value options
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         $this->options = $options;
     }
@@ -194,7 +194,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         $this->data = $data;
         $this->dataClass = get_class($data);
         $this->methods = get_class_methods($data);
-        $this->properties = array();
+        $this->properties = [];
         $this->findProperties(new \ReflectionClass($data));
 
         return $this;
@@ -205,7 +205,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
      */
     public function setProperty($name, $value)
     {
-        $this->setProperties(array($name => $value));
+        $this->setProperties([$name => $value]);
 
         return $this;
     }

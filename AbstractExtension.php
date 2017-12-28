@@ -72,7 +72,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
 
         return isset($this->typeExtensions[$name])
             ? $this->typeExtensions[$name]
-            : array();
+            : [];
     }
 
     /**
@@ -90,7 +90,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
      */
     protected function loadTypes()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -100,7 +100,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
      */
     protected function loadTypeExtensions()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -110,7 +110,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
      */
     private function initTypes()
     {
-        $this->types = array();
+        $this->types = [];
 
         foreach ($this->loadTypes() as $type) {
             if (!$type instanceof ObjectTypeInterface) {
@@ -129,7 +129,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
      */
     private function initTypeExtensions()
     {
-        $this->typeExtensions = array();
+        $this->typeExtensions = [];
 
         foreach ($this->loadTypeExtensions() as $extension) {
             if (!$extension instanceof ObjectTypeExtensionInterface) {

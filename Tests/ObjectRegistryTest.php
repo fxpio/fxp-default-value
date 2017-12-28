@@ -29,9 +29,9 @@ class ObjectRegistryTest extends TestCase
 
     protected function setUp()
     {
-        $this->registry = new ObjectRegistry(array(
+        $this->registry = new ObjectRegistry([
             new TestExtension(),
-        ), new ResolvedObjectTypeFactory());
+        ], new ResolvedObjectTypeFactory());
     }
 
     /**
@@ -39,9 +39,9 @@ class ObjectRegistryTest extends TestCase
      */
     public function testExtensionUnexpectedTypeException()
     {
-        new ObjectRegistry(array(
+        new ObjectRegistry([
             42,
-        ), new ResolvedObjectTypeFactory());
+        ], new ResolvedObjectTypeFactory());
     }
 
     public function testHasTypeObject()

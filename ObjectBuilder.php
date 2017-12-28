@@ -31,7 +31,7 @@ class ObjectBuilder extends ObjectConfigBuilder implements ObjectBuilderInterfac
      * @param ObjectFactoryInterface $factory
      * @param array                  $options
      */
-    public function __construct(ObjectFactoryInterface $factory, array $options = array())
+    public function __construct(ObjectFactoryInterface $factory, array $options = [])
     {
         parent::__construct($options);
 

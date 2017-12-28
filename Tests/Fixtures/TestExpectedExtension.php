@@ -22,15 +22,15 @@ class TestExpectedExtension extends AbstractExtension
 {
     protected function loadTypes()
     {
-        return array(
+        return [
             'foo',
-        );
+        ];
     }
 
     protected function loadTypeExtensions()
     {
-        return array(
+        return [
             'bar',
-        );
+        ];
     }
 }

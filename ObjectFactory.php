@@ -43,7 +43,7 @@ class ObjectFactory implements ObjectFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function inject($data, array $options = array())
+    public function inject($data, array $options = [])
     {
         if (!is_object($data)) {
             throw new UnexpectedTypeException(gettype($data), 'object');
@@ -55,7 +55,7 @@ class ObjectFactory implements ObjectFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function create($type, $data = null, array $options = array())
+    public function create($type, $data = null, array $options = [])
     {
         return $this->createBuilder($type, $data, $options)->getObject();
     }
@@ -63,7 +63,7 @@ class ObjectFactory implements ObjectFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createBuilder($type, $data = null, array $options = array())
+    public function createBuilder($type, $data = null, array $options = [])
     {
         if ($type instanceof ObjectTypeInterface) {
             $type = $this->resolveType($type);
@@ -102,7 +102,7 @@ class ObjectFactory implements ObjectFactoryInterface
             // Type extensions are not supported for unregistered type instances,
             // i.e. type instances that are passed to the ObjectFactory directly,
             // nor for their parents, if getParent() also returns a type instance.
-            array(),
+            [],
             $parentType
         );
     }

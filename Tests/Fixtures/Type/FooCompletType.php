@@ -49,9 +49,9 @@ class FooCompletType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'bar' => null,
-        ));
+        ]);
 
         $resolver->addAllowedTypes('bar', 'string');
     }

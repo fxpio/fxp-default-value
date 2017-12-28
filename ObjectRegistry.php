@@ -27,12 +27,12 @@ class ObjectRegistry implements ObjectRegistryInterface
      *
      * @var array An array of ObjectExtensionInterface
      */
-    protected $extensions = array();
+    protected $extensions = [];
 
     /**
      * @var array
      */
-    protected $types = array();
+    protected $types = [];
 
     /**
      * @var ResolvedObjectTypeFactoryInterface
@@ -126,7 +126,7 @@ class ObjectRegistry implements ObjectRegistryInterface
     private function resolveAndAddType(ObjectTypeInterface $type)
     {
         $parentType = $type->getParent();
-        $typeExtensions = array();
+        $typeExtensions = [];
 
         foreach ($this->extensions as $extension) {
             /* @var ObjectExtensionInterface $extension */

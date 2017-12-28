@@ -34,12 +34,12 @@ class ObjectFactoryTest extends TestCase
 
     protected function setUp()
     {
-        $exts = array(
-            new PreloadedExtension(array(
+        $exts = [
+            new PreloadedExtension([
                 'default' => new DefaultType(),
                 'Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo' => new FooCompletType(),
-            ), array()),
-        );
+            ], []),
+        ];
         $registry = new ObjectRegistry($exts, new ResolvedObjectTypeFactory());
 
         $this->factory = new ObjectFactory($registry, new ResolvedObjectTypeFactory());
@@ -54,7 +54,7 @@ class ObjectFactoryTest extends TestCase
     {
         $type = new FooCompletType();
         $type->configureOptions(new OptionsResolver());
-        $builder = $this->factory->createBuilder($type, null, array('bar' => 'hello world'));
+        $builder = $this->factory->createBuilder($type, null, ['bar' => 'hello world']);
 
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
         $this->assertNull($builder->getData());
@@ -68,7 +68,7 @@ class ObjectFactoryTest extends TestCase
     {
         $type = new FooCompletType();
         $type->configureOptions(new OptionsResolver());
-        $builder = $this->factory->createBuilder($type, null, array('bar' => 'the answer to life, the universe, and everything'));
+        $builder = $this->factory->createBuilder($type, null, ['bar' => 'the answer to life, the universe, and everything']);
         $instance = $builder->getObject();
 
         $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
@@ -80,7 +80,7 @@ class ObjectFactoryTest extends TestCase
         $type = new FooCompletType();
         $type->configureOptions(new OptionsResolver());
         $data = new Foo();
-        $builder = $this->factory->createBuilder($type, $data, array('bar' => 'hello world'));
+        $builder = $this->factory->createBuilder($type, $data, ['bar' => 'hello world']);
         $instance = $builder->getObject();
 
         $this->assertEquals($data, $instance);
@@ -93,7 +93,7 @@ class ObjectFactoryTest extends TestCase
         $type->configureOptions(new OptionsResolver());
         $data = new Foo();
         $data->setBar('has value');
-        $builder = $this->factory->createBuilder($type, $data, array('bar' => 'hello world'));
+        $builder = $this->factory->createBuilder($type, $data, ['bar' => 'hello world']);
         $instance = $builder->getObject();
 
         $this->assertEquals($data, $instance);
@@ -106,7 +106,7 @@ class ObjectFactoryTest extends TestCase
         $type->configureOptions(new OptionsResolver());
         $data = new Foo();
         $data->setBar('the answer to life, the universe, and everything');
-        $builder = $this->factory->createBuilder($type, $data, array('bar' => 'hello world'));
+        $builder = $this->factory->createBuilder($type, $data, ['bar' => 'hello world']);
         $instance = $builder->getObject();
 
         $this->assertEquals($data, $instance);
@@ -126,7 +126,7 @@ class ObjectFactoryTest extends TestCase
 
     public function testCreateBuilderWithString()
     {
-        $builder = $this->factory->createBuilder('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, array('bar' => 'hello world'));
+        $builder = $this->factory->createBuilder('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, ['bar' => 'hello world']);
 
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
         $this->assertNull($builder->getData());
@@ -146,7 +146,7 @@ class ObjectFactoryTest extends TestCase
 
     public function testCreateObject()
     {
-        $instance = $this->factory->create('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, array('bar' => 'hello world'));
+        $instance = $this->factory->create('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, ['bar' => 'hello world']);
 
         $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
         $this->assertEquals('hello world', $instance->getBar());
@@ -156,7 +156,7 @@ class ObjectFactoryTest extends TestCase
     {
         $data = new Foo();
         $data->setBar('has value');
-        $instance = $this->factory->create('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $data, array('bar' => 'hello world'));
+        $instance = $this->factory->create('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $data, ['bar' => 'hello world']);
 
         $this->assertEquals($data, $instance);
         $this->assertEquals('has value', $instance->getBar());
@@ -165,7 +165,7 @@ class ObjectFactoryTest extends TestCase
     public function testInjectDefaultValueInObject()
     {
         $data = new Foo();
-        $instance = $this->factory->inject($data, array('bar' => 'hello world'));
+        $instance = $this->factory->inject($data, ['bar' => 'hello world']);
 
         $this->assertEquals($data, $instance);
         $this->assertEquals('hello world', $instance->getBar());

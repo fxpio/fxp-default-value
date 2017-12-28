@@ -52,7 +52,7 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
      * @throws InvalidArgumentException When the object default value type classname does not exist
      * @throws UnexpectedTypeException  When unexpected type of argument
      */
-    public function __construct(ObjectTypeInterface $innerType, array $typeExtensions = array(), ResolvedObjectTypeInterface $parent = null)
+    public function __construct(ObjectTypeInterface $innerType, array $typeExtensions = [], ResolvedObjectTypeInterface $parent = null)
     {
         if ('default' !== $innerType->getClass() && !class_exists($innerType->getClass())) {
             throw new InvalidArgumentException(sprintf(
@@ -108,7 +108,7 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
     /**
      * {@inheritdoc}
      */
-    public function createBuilder(ObjectFactoryInterface $factory, array $options = array())
+    public function createBuilder(ObjectFactoryInterface $factory, array $options = [])
     {
         $options = $this->getOptionsResolver()->resolve($options);
         $builder = new ObjectBuilder($factory, $options);

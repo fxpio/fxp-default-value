@@ -46,14 +46,14 @@ class ResolvedObjectTypeTest extends TestCase
     {
         $type = new UserType();
 
-        new ResolvedObjectType($type, array('wrong_extension'));
+        new ResolvedObjectType($type, ['wrong_extension']);
     }
 
     public function testBasicOperations()
     {
         $parentType = new DefaultType();
         $type = new UserType();
-        $rType = new ResolvedObjectType($type, array(new UserExtension()), new ResolvedObjectType($parentType));
+        $rType = new ResolvedObjectType($type, [new UserExtension()], new ResolvedObjectType($parentType));
 
         $this->assertEquals($type->getClass(), $rType->getClass());
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ResolvedObjectTypeInterface', $rType->getParent());
@@ -72,7 +72,7 @@ class ResolvedObjectTypeTest extends TestCase
         $rType = $this->getResolvedType();
         /* @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
-        $builder = $rType->createBuilder($factory, array());
+        $builder = $rType->createBuilder($factory, []);
 
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectBuilderInterface', $builder);
         $this->assertEquals($rType, $builder->getType());
@@ -91,11 +91,11 @@ class ResolvedObjectTypeTest extends TestCase
     {
         $type = new FooType();
         $parentType = new DefaultType($type->getClass());
-        $rType = new ResolvedObjectType($type, array(), new ResolvedObjectType($parentType));
+        $rType = new ResolvedObjectType($type, [], new ResolvedObjectType($parentType));
 
         /* @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
-        $builder = $rType->createBuilder($factory, array());
+        $builder = $rType->createBuilder($factory, []);
 
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectBuilderInterface', $builder);
         $this->assertEquals($rType, $builder->getType());
@@ -118,6 +118,6 @@ class ResolvedObjectTypeTest extends TestCase
         $type = new UserType();
         $parentType = new DefaultType($type->getClass());
 
-        return new ResolvedObjectType($type, array(new UserExtension()), new ResolvedObjectType($parentType));
+        return new ResolvedObjectType($type, [new UserExtension()], new ResolvedObjectType($parentType));
     }
 }

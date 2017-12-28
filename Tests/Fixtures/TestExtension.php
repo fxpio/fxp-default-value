@@ -24,15 +24,15 @@ class TestExtension extends AbstractExtension
 {
     protected function loadTypes()
     {
-        return array(
+        return [
             new UserType(),
-        );
+        ];
     }
 
     protected function loadTypeExtensions()
     {
-        return array(
+        return [
             new UserExtension(),
-        );
+        ];
     }
 }

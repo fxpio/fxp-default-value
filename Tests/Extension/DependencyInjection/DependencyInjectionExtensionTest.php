@@ -43,15 +43,15 @@ class DependencyInjectionExtensionTest extends TestCase
         $userType = new UserType();
         $userExt = new UserExtension();
 
-        $typeServiceIds = array(
+        $typeServiceIds = [
             $userType->getClass() => 'service.user.type',
             $fooType->getClass() => 'service.foo.type',
-        );
-        $typeExtensionServiceIds = array(
-            $userExt->getExtendedType() => array(
+        ];
+        $typeExtensionServiceIds = [
+            $userExt->getExtendedType() => [
                 'service.user.type_extension',
-            ),
-        );
+            ],
+        ];
 
         $this->container = $this->getMockBuilder(ContainerInterface::class)->getMock();
         $this->ext = new DependencyInjectionExtension($typeServiceIds, $typeExtensionServiceIds);

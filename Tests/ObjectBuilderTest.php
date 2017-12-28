@@ -31,9 +31,9 @@ class ObjectBuilderTest extends TestCase
 
     protected function setUp()
     {
-        $options = array(
+        $options = [
             'bar' => 'hello world',
-        );
+        ];
         /* @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $type = new FooCompletType();
@@ -63,9 +63,9 @@ class ObjectBuilderTest extends TestCase
 
     public function testGetObjectWithoutDataWithEditionOnFinishMethod()
     {
-        $options = array(
+        $options = [
             'bar' => 'the answer to life, the universe, and everything',
-        );
+        ];
         /* @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $type = new FooCompletType();

@@ -79,7 +79,7 @@ class DependencyInjectionExtension implements ObjectExtensionInterface
      */
     public function getTypeExtensions($name)
     {
-        $extensions = array();
+        $extensions = [];
 
         if (isset($this->typeExtensionServiceIds[$name])) {
             foreach ($this->typeExtensionServiceIds[$name] as $serviceId) {

@@ -29,7 +29,7 @@ interface ObjectFactoryInterface
      * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type or data is not
      *                                           an object
      */
-    public function inject($data, array $options = array());
+    public function inject($data, array $options = []);
 
     /**
      * Returns a object with the default value.
@@ -44,7 +44,7 @@ interface ObjectFactoryInterface
      *
      * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type
      */
-    public function create($type, $data = null, array $options = array());
+    public function create($type, $data = null, array $options = []);
 
     /**
      * Returns a block builder.
@@ -57,5 +57,5 @@ interface ObjectFactoryInterface
      *
      * @throws Exception\UnexpectedTypeException if any given option is not applicable to the given type
      */
-    public function createBuilder($type, $data = null, array $options = array());
+    public function createBuilder($type, $data = null, array $options = []);
 }

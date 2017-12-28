@@ -22,12 +22,12 @@ class PreloadedExtensionTest extends AbstractBaseExtensionTest
 {
     protected function setUp()
     {
-        $types = array(
+        $types = [
             'Fxp\Component\DefaultValue\Tests\Fixtures\Object\User' => new UserType(),
-        );
-        $extensions = array(
-            'Fxp\Component\DefaultValue\Tests\Fixtures\Object\User' => array(new UserExtension()),
-        );
+        ];
+        $extensions = [
+            'Fxp\Component\DefaultValue\Tests\Fixtures\Object\User' => [new UserExtension()],
+        ];
 
         $this->extension = new PreloadedExtension($types, $extensions);
     }
