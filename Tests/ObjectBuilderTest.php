@@ -1,26 +1,26 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue\Tests;
+namespace Fxp\Component\DefaultValue\Tests;
 
+use Fxp\Component\DefaultValue\ObjectBuilder;
+use Fxp\Component\DefaultValue\ObjectBuilderInterface;
+use Fxp\Component\DefaultValue\ObjectFactoryInterface;
+use Fxp\Component\DefaultValue\ResolvedObjectType;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType;
 use PHPUnit\Framework\TestCase;
-use Sonatra\Component\DefaultValue\ObjectBuilder;
-use Sonatra\Component\DefaultValue\ObjectBuilderInterface;
-use Sonatra\Component\DefaultValue\ObjectFactoryInterface;
-use Sonatra\Component\DefaultValue\ResolvedObjectType;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class ObjectBuilderTest extends TestCase
 {
@@ -35,7 +35,7 @@ class ObjectBuilderTest extends TestCase
             'bar' => 'hello world',
         );
         /* @var ObjectFactoryInterface $factory */
-        $factory = $this->getMockBuilder('Sonatra\Component\DefaultValue\ObjectFactoryInterface')->getMock();
+        $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $type = new FooCompletType();
         $rType = new ResolvedObjectType($type);
 
@@ -50,14 +50,14 @@ class ObjectBuilderTest extends TestCase
 
     public function testGetObjectFactory()
     {
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ObjectFactoryInterface', $this->builder->getObjectFactory());
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryInterface', $this->builder->getObjectFactory());
     }
 
     public function testGetObjectWithoutData()
     {
         $instance = $this->builder->getObject();
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
         $this->assertEquals('hello world', $instance->getBar());
     }
 
@@ -67,7 +67,7 @@ class ObjectBuilderTest extends TestCase
             'bar' => 'the answer to life, the universe, and everything',
         );
         /* @var ObjectFactoryInterface $factory */
-        $factory = $this->getMockBuilder('Sonatra\Component\DefaultValue\ObjectFactoryInterface')->getMock();
+        $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $type = new FooCompletType();
         $rType = new ResolvedObjectType($type);
 
@@ -76,7 +76,7 @@ class ObjectBuilderTest extends TestCase
 
         $instance = $this->builder->getObject();
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
         $this->assertEquals('42', $instance->getBar());
     }
 
@@ -98,7 +98,7 @@ class ObjectBuilderTest extends TestCase
         $this->builder->setData($data);
         $instance = $this->builder->getObject();
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
         $this->assertEquals('42', $instance->getBar());
     }
 }

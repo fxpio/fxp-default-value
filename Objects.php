@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue;
+namespace Fxp\Component\DefaultValue;
 
-use Sonatra\Component\DefaultValue\Extension\Core\CoreExtension;
+use Fxp\Component\DefaultValue\Extension\Core\CoreExtension;
 
 /**
  * Entry point of the Object Default Value component.
@@ -19,7 +19,7 @@ use Sonatra\Component\DefaultValue\Extension\Core\CoreExtension;
  * Use this class to conveniently create new block factories:
  *
  * <code>
- * use Sonatra\Component\DefaultValue\Objects;
+ * use Fxp\Component\DefaultValue\Objects;
  *
  * $objectFactory = Objects::createObjectFactory();
  *
@@ -46,7 +46,7 @@ use Sonatra\Component\DefaultValue\Extension\Core\CoreExtension;
  *     ->getObjectFactory();
  * </code>
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 final class Objects
 {

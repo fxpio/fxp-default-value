@@ -1,14 +1,14 @@
 {
-    "name": "sonatra/default-value",
+    "name": "fxp/default-value",
     "type": "library",
     "description": "Creates or injects the default values ​​with a advanced configuration in the object",
     "keywords": ["default value", "object", "entity", "document"],
-    "homepage": "https://github.com/sonatra/sonatra-default-value",
+    "homepage": "https://github.com/fxpio/fxp-default-value",
     "license": "MIT",
     "authors": [
         {
             "name": "François Pluchino",
-            "email": "francois.pluchino@sonatra.com"
+            "email": "francois.pluchino@gmail.com"
         }
     ],
     "minimum-stability": "dev",
@@ -23,7 +23,7 @@
         "symfony/security": "^3.4.0|^4.0.0"
     },
     "autoload": {
-        "psr-4": { "Sonatra\\Component\\DefaultValue\\": "" },
+        "psr-4": { "Fxp\\Component\\DefaultValue\\": "" },
         "exclude-from-classmap": [
             "/Tests/"
         ]

@@ -1,24 +1,24 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue;
+namespace Fxp\Component\DefaultValue;
 
-use Sonatra\Component\DefaultValue\Exception\ExceptionInterface;
-use Sonatra\Component\DefaultValue\Exception\UnexpectedTypeException;
-use Sonatra\Component\DefaultValue\Extension\Core\Type\DefaultType;
+use Fxp\Component\DefaultValue\Exception\ExceptionInterface;
+use Fxp\Component\DefaultValue\Exception\UnexpectedTypeException;
+use Fxp\Component\DefaultValue\Extension\Core\Type\DefaultType;
 
 /**
  * The central registry of the Object Default Value component.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class ObjectRegistry implements ObjectRegistryInterface
 {
@@ -51,7 +51,7 @@ class ObjectRegistry implements ObjectRegistryInterface
     {
         foreach ($extensions as $extension) {
             if (!$extension instanceof ObjectExtensionInterface) {
-                throw new UnexpectedTypeException($extension, 'Sonatra\Component\DefaultValue\ObjectExtensionInterface');
+                throw new UnexpectedTypeException($extension, 'Fxp\Component\DefaultValue\ObjectExtensionInterface');
             }
         }
 

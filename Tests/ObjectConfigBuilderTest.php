@@ -1,27 +1,27 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue\Tests;
+namespace Fxp\Component\DefaultValue\Tests;
 
+use Fxp\Component\DefaultValue\ObjectConfigBuilder;
+use Fxp\Component\DefaultValue\ObjectConfigBuilderInterface;
+use Fxp\Component\DefaultValue\ResolvedObjectType;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foobar;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Object\User;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooType;
 use PHPUnit\Framework\TestCase;
-use Sonatra\Component\DefaultValue\ObjectConfigBuilder;
-use Sonatra\Component\DefaultValue\ObjectConfigBuilderInterface;
-use Sonatra\Component\DefaultValue\ResolvedObjectType;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foobar;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Object\User;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooType;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class ObjectConfigBuilderTest extends TestCase
 {
@@ -55,7 +55,7 @@ class ObjectConfigBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\BadMethodCallException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
      */
     public function testGetObjectConfigWithConfigLocked()
     {
@@ -68,28 +68,28 @@ class ObjectConfigBuilderTest extends TestCase
     {
         $type = $this->config->getType();
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ResolvedObjectTypeInterface', $type);
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType', $type->getInnerType());
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ResolvedObjectTypeInterface', $type);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType', $type->getInnerType());
     }
 
     public function testSetType()
     {
         $type = $this->config->getType();
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ResolvedObjectTypeInterface', $type);
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType', $type->getInnerType());
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ResolvedObjectTypeInterface', $type);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType', $type->getInnerType());
 
         $rType = new ResolvedObjectType(new FooType());
         $config = $this->config->setType($rType);
         $type2 = $this->config->getType();
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ResolvedObjectTypeInterface', $type2);
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooType', $type2->getInnerType());
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ResolvedObjectTypeInterface', $type2);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooType', $type2->getInnerType());
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\BadMethodCallException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
      */
     public function testSetTypeWithConfigLocked()
     {
@@ -119,7 +119,7 @@ class ObjectConfigBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\InvalidArgumentException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
      */
     public function testSetInvalidData()
     {
@@ -137,7 +137,7 @@ class ObjectConfigBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\BadMethodCallException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
      */
     public function testSetValidDataWithConfigLocked()
     {
@@ -174,7 +174,7 @@ class ObjectConfigBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\BadMethodCallException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
      */
     public function testGetPropertyWithEmptyData()
     {
@@ -185,7 +185,7 @@ class ObjectConfigBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\InvalidArgumentException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
      */
     public function testGetInvalidProperty()
     {
@@ -212,14 +212,14 @@ class ObjectConfigBuilderTest extends TestCase
                 'privateProperty' => true,
         ));
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
         $this->assertEquals('value edited', $data->getBar());
         $this->assertEquals('21', $data->getCustomField());
         $this->assertTrue($this->config->getProperty('privateProperty'));
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\BadMethodCallException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
      */
     public function testSetPropertiesWithConfigLocked()
     {
@@ -233,7 +233,7 @@ class ObjectConfigBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\BadMethodCallException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
      */
     public function testSetPropertiesWithEmptyData()
     {
@@ -246,7 +246,7 @@ class ObjectConfigBuilderTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\InvalidArgumentException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
      */
     public function testSetPropertiesWithInvalidClassProperty()
     {
@@ -268,12 +268,12 @@ class ObjectConfigBuilderTest extends TestCase
 
         $config = $this->config->setProperty('bar', 'value edited');
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
         $this->assertEquals('value edited', $data->getBar());
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\BadMethodCallException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
      */
     public function testSetPropertyWithEmptyData()
     {

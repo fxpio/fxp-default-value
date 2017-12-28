@@ -1,22 +1,22 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue\Extension\DependencyInjection;
+namespace Fxp\Component\DefaultValue\Extension\DependencyInjection;
 
-use Sonatra\Component\DefaultValue\Exception\InvalidArgumentException;
-use Sonatra\Component\DefaultValue\ObjectExtensionInterface;
+use Fxp\Component\DefaultValue\Exception\InvalidArgumentException;
+use Fxp\Component\DefaultValue\ObjectExtensionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class DependencyInjectionExtension implements ObjectExtensionInterface
 {

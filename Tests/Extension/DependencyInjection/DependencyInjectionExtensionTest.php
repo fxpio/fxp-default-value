@@ -1,29 +1,29 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue\Tests\Extension\DependencyInjection;
+namespace Fxp\Component\DefaultValue\Tests\Extension\DependencyInjection;
 
+use Fxp\Component\DefaultValue\Extension\DependencyInjection\DependencyInjectionExtension;
+use Fxp\Component\DefaultValue\ObjectTypeExtensionInterface;
+use Fxp\Component\DefaultValue\ObjectTypeInterface;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Extension\UserExtension;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Object\User;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooType;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Type\UserType;
 use PHPUnit\Framework\TestCase;
-use Sonatra\Component\DefaultValue\Extension\DependencyInjection\DependencyInjectionExtension;
-use Sonatra\Component\DefaultValue\ObjectTypeExtensionInterface;
-use Sonatra\Component\DefaultValue\ObjectTypeInterface;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Extension\UserExtension;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Object\User;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooType;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Type\UserType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class DependencyInjectionExtensionTest extends TestCase
 {
@@ -72,7 +72,7 @@ class DependencyInjectionExtensionTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\InvalidArgumentException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
      * @expectedExceptionMessageRegExp /The object default value type "([\w\\]+)" is not registered with the service container./
      */
     public function testGetInvalidType()
@@ -81,7 +81,7 @@ class DependencyInjectionExtensionTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\InvalidArgumentException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
      * @expectedExceptionMessageRegExp /The object default value type class name specified for the service "([\w\.\_]+)" does not match the actual class name. Expected "([\w\\]+)", given "([\w\\]+)"/
      */
     public function testGetInvalidClass()

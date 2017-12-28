@@ -1,22 +1,22 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue\Tests\Fixtures\Object;
+namespace Fxp\Component\DefaultValue\Tests\Fixtures\Object;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User is the user implementation used by the in-memory user provider.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 final class User implements AdvancedUserInterface
 {

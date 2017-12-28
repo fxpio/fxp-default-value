@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue;
+namespace Fxp\Component\DefaultValue;
 
-use Sonatra\Component\DefaultValue\Exception\InvalidArgumentException;
-use Sonatra\Component\DefaultValue\Exception\UnexpectedTypeException;
+use Fxp\Component\DefaultValue\Exception\InvalidArgumentException;
+use Fxp\Component\DefaultValue\Exception\UnexpectedTypeException;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 abstract class AbstractExtension implements ObjectExtensionInterface
 {
@@ -114,7 +114,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
 
         foreach ($this->loadTypes() as $type) {
             if (!$type instanceof ObjectTypeInterface) {
-                throw new UnexpectedTypeException($type, 'Sonatra\Component\DefaultValue\ObjectTypeInterface');
+                throw new UnexpectedTypeException($type, 'Fxp\Component\DefaultValue\ObjectTypeInterface');
             }
 
             $this->types[$type->getClass()] = $type;
@@ -133,7 +133,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
 
         foreach ($this->loadTypeExtensions() as $extension) {
             if (!$extension instanceof ObjectTypeExtensionInterface) {
-                throw new UnexpectedTypeException($extension, 'Sonatra\Component\DefaultValue\ObjectTypeExtensionInterface');
+                throw new UnexpectedTypeException($extension, 'Fxp\Component\DefaultValue\ObjectTypeExtensionInterface');
             }
 
             $type = $extension->getExtendedType();

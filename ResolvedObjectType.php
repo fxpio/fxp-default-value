@@ -1,24 +1,24 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue;
+namespace Fxp\Component\DefaultValue;
 
-use Sonatra\Component\DefaultValue\Exception\InvalidArgumentException;
-use Sonatra\Component\DefaultValue\Exception\UnexpectedTypeException;
+use Fxp\Component\DefaultValue\Exception\InvalidArgumentException;
+use Fxp\Component\DefaultValue\Exception\UnexpectedTypeException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * A wrapper for a object default value type and its extensions.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class ResolvedObjectType implements ResolvedObjectTypeInterface
 {
@@ -64,7 +64,7 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
 
         foreach ($typeExtensions as $extension) {
             if (!$extension instanceof ObjectTypeExtensionInterface) {
-                throw new UnexpectedTypeException($extension, 'Sonatra\Component\DefaultValue\ObjectTypeExtensionInterface');
+                throw new UnexpectedTypeException($extension, 'Fxp\Component\DefaultValue\ObjectTypeExtensionInterface');
             }
         }
 

@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue;
+namespace Fxp\Component\DefaultValue;
 
-use Sonatra\Component\DefaultValue\Exception\UnexpectedTypeException;
+use Fxp\Component\DefaultValue\Exception\UnexpectedTypeException;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class ObjectFactory implements ObjectFactoryInterface
 {
@@ -70,7 +70,7 @@ class ObjectFactory implements ObjectFactoryInterface
         } elseif (is_string($type)) {
             $type = $this->registry->getType($type);
         } elseif (!$type instanceof ResolvedObjectTypeInterface) {
-            throw new UnexpectedTypeException($type, 'string, Sonatra\Component\DefaultValue\ResolvedObjectTypeInterface or Sonatra\Component\DefaultValue\ObjectTypeInterface');
+            throw new UnexpectedTypeException($type, 'string, Fxp\Component\DefaultValue\ResolvedObjectTypeInterface or Fxp\Component\DefaultValue\ObjectTypeInterface');
         }
 
         $builder = $type->createBuilder($this, $options);

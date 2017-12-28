@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue\Tests;
+namespace Fxp\Component\DefaultValue\Tests;
 
+use Fxp\Component\DefaultValue\Objects;
 use PHPUnit\Framework\TestCase;
-use Sonatra\Component\DefaultValue\Objects;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class ObjectsTest extends TestCase
 {
@@ -23,13 +23,13 @@ class ObjectsTest extends TestCase
     {
         $of = Objects::createObjectFactoryBuilder();
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ObjectFactoryBuilderInterface', $of);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryBuilderInterface', $of);
     }
 
     public function testObjectFactoryCreator()
     {
         $of = Objects::createObjectFactory();
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ObjectFactoryInterface', $of);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryInterface', $of);
     }
 }

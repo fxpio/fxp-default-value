@@ -1,29 +1,29 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Component\DefaultValue\Tests;
+namespace Fxp\Component\DefaultValue\Tests;
 
+use Fxp\Component\DefaultValue\Extension\Core\Type\DefaultType;
+use Fxp\Component\DefaultValue\ObjectFactory;
+use Fxp\Component\DefaultValue\ObjectFactoryInterface;
+use Fxp\Component\DefaultValue\ObjectRegistry;
+use Fxp\Component\DefaultValue\PreloadedExtension;
+use Fxp\Component\DefaultValue\ResolvedObjectTypeFactory;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo;
+use Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType;
 use PHPUnit\Framework\TestCase;
-use Sonatra\Component\DefaultValue\Extension\Core\Type\DefaultType;
-use Sonatra\Component\DefaultValue\ObjectFactory;
-use Sonatra\Component\DefaultValue\ObjectFactoryInterface;
-use Sonatra\Component\DefaultValue\ObjectRegistry;
-use Sonatra\Component\DefaultValue\PreloadedExtension;
-use Sonatra\Component\DefaultValue\ResolvedObjectTypeFactory;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo;
-use Sonatra\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class ObjectFactoryTest extends TestCase
 {
@@ -37,7 +37,7 @@ class ObjectFactoryTest extends TestCase
         $exts = array(
             new PreloadedExtension(array(
                 'default' => new DefaultType(),
-                'Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo' => new FooCompletType(),
+                'Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo' => new FooCompletType(),
             ), array()),
         );
         $registry = new ObjectRegistry($exts, new ResolvedObjectTypeFactory());
@@ -56,11 +56,11 @@ class ObjectFactoryTest extends TestCase
         $type->configureOptions(new OptionsResolver());
         $builder = $this->factory->createBuilder($type, null, array('bar' => 'hello world'));
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
         $this->assertNull($builder->getData());
 
         $instance = $builder->getObject();
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
         $this->assertEquals('hello world', $instance->getBar());
     }
 
@@ -71,7 +71,7 @@ class ObjectFactoryTest extends TestCase
         $builder = $this->factory->createBuilder($type, null, array('bar' => 'the answer to life, the universe, and everything'));
         $instance = $builder->getObject();
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
         $this->assertEquals('42', $instance->getBar());
     }
 
@@ -126,18 +126,18 @@ class ObjectFactoryTest extends TestCase
 
     public function testCreateBuilderWithString()
     {
-        $builder = $this->factory->createBuilder('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, array('bar' => 'hello world'));
+        $builder = $this->factory->createBuilder('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, array('bar' => 'hello world'));
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectConfigBuilderInterface', $builder);
         $this->assertNull($builder->getData());
 
         $instance = $builder->getObject();
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
         $this->assertEquals('hello world', $instance->getBar());
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\UnexpectedTypeException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\UnexpectedTypeException
      */
     public function testCreateBuilderWithTypeIsNotAResolvedObjectTypeInstance()
     {
@@ -146,9 +146,9 @@ class ObjectFactoryTest extends TestCase
 
     public function testCreateObject()
     {
-        $instance = $this->factory->create('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, array('bar' => 'hello world'));
+        $instance = $this->factory->create('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, array('bar' => 'hello world'));
 
-        $this->assertInstanceOf('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
+        $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $instance);
         $this->assertEquals('hello world', $instance->getBar());
     }
 
@@ -156,7 +156,7 @@ class ObjectFactoryTest extends TestCase
     {
         $data = new Foo();
         $data->setBar('has value');
-        $instance = $this->factory->create('Sonatra\Component\DefaultValue\Tests\Fixtures\Object\Foo', $data, array('bar' => 'hello world'));
+        $instance = $this->factory->create('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', $data, array('bar' => 'hello world'));
 
         $this->assertEquals($data, $instance);
         $this->assertEquals('has value', $instance->getBar());
@@ -172,7 +172,7 @@ class ObjectFactoryTest extends TestCase
     }
 
     /**
-     * @expectedException \Sonatra\Component\DefaultValue\Exception\UnexpectedTypeException
+     * @expectedException \Fxp\Component\DefaultValue\Exception\UnexpectedTypeException
      */
     public function testInjectDefaultValueInNonObject()
     {
