@@ -45,11 +45,11 @@ class ObjectFactory implements ObjectFactoryInterface
      */
     public function inject($data, array $options = [])
     {
-        if (!is_object($data)) {
-            throw new UnexpectedTypeException(gettype($data), 'object');
+        if (!\is_object($data)) {
+            throw new UnexpectedTypeException(\gettype($data), 'object');
         }
 
-        return $this->create(get_class($data), $data, $options);
+        return $this->create(\get_class($data), $data, $options);
     }
 
     /**
@@ -67,7 +67,7 @@ class ObjectFactory implements ObjectFactoryInterface
     {
         if ($type instanceof ObjectTypeInterface) {
             $type = $this->resolveType($type);
-        } elseif (is_string($type)) {
+        } elseif (\is_string($type)) {
             $type = $this->registry->getType($type);
         } elseif (!$type instanceof ResolvedObjectTypeInterface) {
             throw new UnexpectedTypeException($type, 'string, Fxp\Component\DefaultValue\ResolvedObjectTypeInterface or Fxp\Component\DefaultValue\ObjectTypeInterface');

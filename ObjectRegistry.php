@@ -64,7 +64,7 @@ class ObjectRegistry implements ObjectRegistryInterface
      */
     public function getType($name)
     {
-        if (!is_string($name)) {
+        if (!\is_string($name)) {
             throw new UnexpectedTypeException($name, 'string');
         }
 

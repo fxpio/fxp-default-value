@@ -133,7 +133,7 @@ class ObjectConfigBuilderTest extends TestCase
 
         $this->assertEquals($this->config, $config);
         $this->assertEquals($data, $this->config->getData());
-        $this->assertEquals(get_class($data), $this->config->getDataClass());
+        $this->assertEquals(\get_class($data), $this->config->getDataClass());
     }
 
     /**

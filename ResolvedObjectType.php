@@ -57,7 +57,7 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
         if ('default' !== $innerType->getClass() && !class_exists($innerType->getClass())) {
             throw new InvalidArgumentException(sprintf(
                 'The "%s" object default value type class name ("%s") does not exists.',
-                get_class($innerType),
+                \get_class($innerType),
                 $innerType->getClass()
             ));
         }

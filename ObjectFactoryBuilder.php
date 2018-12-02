@@ -121,7 +121,7 @@ class ObjectFactoryBuilder implements ObjectFactoryBuilderInterface
     {
         $extensions = $this->extensions;
 
-        if (count($this->types) > 0 || count($this->typeExtensions) > 0) {
+        if (\count($this->types) > 0 || \count($this->typeExtensions) > 0) {
             $extensions[] = new PreloadedExtension($this->types, $this->typeExtensions);
         }
 

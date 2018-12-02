@@ -87,7 +87,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
      */
     public function hasProperty($name)
     {
-        return in_array($name, $this->properties);
+        return \in_array($name, $this->properties);
     }
 
     /**
@@ -103,15 +103,15 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         $methodHas = 'has'.ucfirst($name);
         $methodIs = 'is'.ucfirst($name);
 
-        if (in_array($methodGet, $this->methods)) {
+        if (\in_array($methodGet, $this->methods)) {
             return $this->getData()->$methodGet();
         }
 
-        if (in_array($methodHas, $this->methods)) {
+        if (\in_array($methodHas, $this->methods)) {
             return $this->getData()->$methodHas();
         }
 
-        if (in_array($methodIs, $this->methods)) {
+        if (\in_array($methodIs, $this->methods)) {
             return $this->getData()->$methodIs();
         }
 
@@ -187,12 +187,12 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
             throw new BadMethodCallException('BlockConfigBuilder methods cannot be accessed anymore once the builder is turned into a BlockConfigInterface instance.');
         }
 
-        if (!is_object($data)) {
-            throw new InvalidArgumentException(sprintf('The data of object default value must be an object, given %s.', gettype($data)));
+        if (!\is_object($data)) {
+            throw new InvalidArgumentException(sprintf('The data of object default value must be an object, given %s.', \gettype($data)));
         }
 
         $this->data = $data;
-        $this->dataClass = get_class($data);
+        $this->dataClass = \get_class($data);
         $this->methods = get_class_methods($data);
         $this->properties = [];
         $this->findProperties(new \ReflectionClass($data));
@@ -228,7 +228,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         foreach ($properties as $property => $value) {
             $methodSet = 'set'.ucfirst($property);
 
-            if (in_array($methodSet, $this->methods)) {
+            if (\in_array($methodSet, $this->methods)) {
                 $this->getData()->$methodSet($value);
             } else {
                 $refProp = $this->findReflectionProperty($property, $refClass);
