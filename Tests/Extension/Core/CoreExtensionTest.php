@@ -16,25 +16,27 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class CoreExtensionTest extends TestCase
+final class CoreExtensionTest extends TestCase
 {
     /**
      * @var CoreExtension
      */
     protected $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->extension = new CoreExtension();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->extension = null;
     }
 
-    public function testCoreExtension()
+    public function testCoreExtension(): void
     {
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectExtensionInterface', $this->extension);
         $this->assertFalse($this->extension->hasType('default'));

@@ -73,9 +73,10 @@ class ObjectRegistry implements ObjectRegistryInterface
             $type = null;
 
             foreach ($this->extensions as $extension) {
-                /* @var ObjectExtensionInterface $extension */
+                /** @var ObjectExtensionInterface $extension */
                 if ($extension->hasType($name)) {
                     $type = $extension->getType($name);
+
                     break;
                 }
             }
@@ -123,14 +124,15 @@ class ObjectRegistry implements ObjectRegistryInterface
      *
      * @param ObjectTypeInterface $type The type to resolve
      */
-    private function resolveAndAddType(ObjectTypeInterface $type)
+    private function resolveAndAddType(ObjectTypeInterface $type): void
     {
         $parentType = $type->getParent();
         $typeExtensions = [];
 
         foreach ($this->extensions as $extension) {
-            /* @var ObjectExtensionInterface $extension */
-            $typeExtensions = array_merge($typeExtensions,
+            /** @var ObjectExtensionInterface $extension */
+            $typeExtensions = array_merge(
+                $typeExtensions,
                 $extension->getTypeExtensions('default'),
                 $extension->getTypeExtensions($type->getClass())
             );

@@ -26,7 +26,7 @@ class Foobar extends Foo
     /**
      * @param string $value
      */
-    public function setCustomField($value)
+    public function setCustomField($value): void
     {
         $this->customField = $value;
     }

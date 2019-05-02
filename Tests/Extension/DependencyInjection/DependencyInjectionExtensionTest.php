@@ -24,8 +24,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class DependencyInjectionExtensionTest extends TestCase
+final class DependencyInjectionExtensionTest extends TestCase
 {
     /**
      * @var DependencyInjectionExtension
@@ -37,7 +39,7 @@ class DependencyInjectionExtensionTest extends TestCase
      */
     protected $container;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $fooType = new FooType();
         $userType = new UserType();
@@ -58,12 +60,13 @@ class DependencyInjectionExtensionTest extends TestCase
         $this->ext->container = $this->container;
     }
 
-    public function testGetType()
+    public function testGetType(): void
     {
         $this->container->expects($this->once())
             ->method('get')
             ->with('service.foo.type')
-            ->will($this->returnValue(new FooType()));
+            ->will($this->returnValue(new FooType()))
+        ;
 
         $this->assertTrue($this->ext->hasType(Foo::class));
         $type = $this->ext->getType(Foo::class);
@@ -71,42 +74,42 @@ class DependencyInjectionExtensionTest extends TestCase
         $this->assertInstanceOf(ObjectTypeInterface::class, $type);
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
-     * @expectedExceptionMessageRegExp /The object default value type "([\w\\]+)" is not registered with the service container./
-     */
-    public function testGetInvalidType()
+    public function testGetInvalidType(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\InvalidArgumentException::class);
+        $this->expectExceptionMessageRegExp('/The object default value type "([\\w\\\\]+)" is not registered with the service container./');
+
         $this->ext->getType(\stdClass::class);
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
-     * @expectedExceptionMessageRegExp /The object default value type class name specified for the service "([\w\.\_]+)" does not match the actual class name. Expected "([\w\\]+)", given "([\w\\]+)"/
-     */
-    public function testGetInvalidClass()
+    public function testGetInvalidClass(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\InvalidArgumentException::class);
+        $this->expectExceptionMessageRegExp('/The object default value type class name specified for the service "([\\w\\.\\_]+)" does not match the actual class name. Expected "([\\w\\\\]+)", given "([\\w\\\\]+)"/');
+
         $this->container->expects($this->once())
             ->method('get')
             ->with('service.foo.type')
-            ->will($this->returnValue(new UserType()));
+            ->will($this->returnValue(new UserType()))
+        ;
 
         $this->assertTrue($this->ext->hasType(Foo::class));
         $this->ext->getType(Foo::class);
     }
 
-    public function testHasType()
+    public function testHasType(): void
     {
         $this->assertTrue($this->ext->hasType(Foo::class));
         $this->assertFalse($this->ext->hasType(\stdClass::class));
     }
 
-    public function testGetTypeExtensions()
+    public function testGetTypeExtensions(): void
     {
         $this->container->expects($this->once())
             ->method('get')
             ->with('service.user.type_extension')
-            ->will($this->returnValue(new UserExtension()));
+            ->will($this->returnValue(new UserExtension()))
+        ;
 
         $this->assertTrue($this->ext->hasTypeExtensions(User::class));
         $typeExtensions = $this->ext->getTypeExtensions(User::class);
@@ -115,7 +118,7 @@ class DependencyInjectionExtensionTest extends TestCase
         $this->assertInstanceOf(ObjectTypeExtensionInterface::class, current($typeExtensions));
     }
 
-    public function testHasTypeExtensions()
+    public function testHasTypeExtensions(): void
     {
         $this->assertTrue($this->ext->hasTypeExtensions(User::class));
         $this->assertFalse($this->ext->hasTypeExtensions(\stdClass::class));

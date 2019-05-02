@@ -18,40 +18,39 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class AbstractExtensionTest extends TestCase
+final class AbstractExtensionTest extends TestCase
 {
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
-     */
-    public function testGetUnexistingType()
+    public function testGetUnexistingType(): void
     {
-        /* @var ObjectExtensionInterface $ext */
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\InvalidArgumentException::class);
+
+        /** @var ObjectExtensionInterface $ext */
         $ext = $this->getMockForAbstractClass('Fxp\Component\DefaultValue\AbstractExtension');
         $ext->getType('unexisting_type');
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\UnexpectedTypeException
-     */
-    public function testInitLoadTypeException()
+    public function testInitLoadTypeException(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\UnexpectedTypeException::class);
+
         $ext = new TestExpectedExtension();
         $ext->getType('unexisting_type');
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\UnexpectedTypeException
-     */
-    public function testInitLoadTypeExtensionException()
+    public function testInitLoadTypeExtensionException(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\UnexpectedTypeException::class);
+
         $ext = new TestExpectedExtension();
         $ext->getTypeExtensions('unexisting_type');
     }
 
-    public function testGetEmptyTypeExtension()
+    public function testGetEmptyTypeExtension(): void
     {
-        /* @var ObjectExtensionInterface $ext */
+        /** @var ObjectExtensionInterface $ext */
         $ext = $this->getMockForAbstractClass('Fxp\Component\DefaultValue\AbstractExtension');
         $typeExts = $ext->getTypeExtensions('unexisting_type_extension');
 
@@ -59,7 +58,7 @@ class AbstractExtensionTest extends TestCase
         $this->assertCount(0, $typeExts);
     }
 
-    public function testGetType()
+    public function testGetType(): void
     {
         $ext = new TestExtension();
         $type = $ext->getType('Fxp\Component\DefaultValue\Tests\Fixtures\Object\User');
@@ -67,14 +66,14 @@ class AbstractExtensionTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectTypeInterface', $type);
     }
 
-    public function testHasType()
+    public function testHasType(): void
     {
         $ext = new TestExtension();
 
         $this->assertTrue($ext->hasType('Fxp\Component\DefaultValue\Tests\Fixtures\Object\User'));
     }
 
-    public function testGetTypeExtensions()
+    public function testGetTypeExtensions(): void
     {
         $ext = new TestExtension();
         $typeExts = $ext->getTypeExtensions('Fxp\Component\DefaultValue\Tests\Fixtures\Object\User');
@@ -84,7 +83,7 @@ class AbstractExtensionTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectTypeExtensionInterface', $typeExts[0]);
     }
 
-    public function testHasTypeExtensions()
+    public function testHasTypeExtensions(): void
     {
         $ext = new TestExtension();
 

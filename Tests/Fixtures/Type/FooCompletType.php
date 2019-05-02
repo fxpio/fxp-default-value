@@ -21,9 +21,9 @@ class FooCompletType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildObject(ObjectBuilderInterface $builder, array $options)
+    public function buildObject(ObjectBuilderInterface $builder, array $options): void
     {
-        /* @var Foo $data */
+        /** @var Foo $data */
         $data = $builder->getData();
 
         if (null === $data->getBar()) {
@@ -34,9 +34,9 @@ class FooCompletType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function finishObject(ObjectBuilderInterface $builder, array $options)
+    public function finishObject(ObjectBuilderInterface $builder, array $options): void
     {
-        /* @var Foo $data */
+        /** @var Foo $data */
         $data = $builder->getData();
 
         if ('the answer to life, the universe, and everything' === $data->getBar()) {
@@ -47,7 +47,7 @@ class FooCompletType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'bar' => null,

@@ -17,10 +17,12 @@ use Fxp\Component\DefaultValue\Tests\Fixtures\Type\UserType;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class PreloadedExtensionTest extends AbstractBaseExtensionTest
+final class PreloadedExtensionTest extends AbstractBaseExtensionTest
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $types = [
             'Fxp\Component\DefaultValue\Tests\Fixtures\Object\User' => new UserType(),

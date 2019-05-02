@@ -60,7 +60,7 @@ interface ObjectTypeInterface
     /**
      * Returns the name of the parent type.
      *
-     * @return string|null The name of the parent type if any, null otherwise
+     * @return null|string The name of the parent type if any, null otherwise
      */
     public function getParent();
 

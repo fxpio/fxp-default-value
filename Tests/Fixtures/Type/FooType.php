@@ -19,7 +19,7 @@ class FooType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function newInstance(ObjectBuilderInterface $builder, array $options)
+    public function newInstance(ObjectBuilderInterface $builder, array $options): void
     {
         // force the test to create instance with the default type
     }

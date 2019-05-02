@@ -49,10 +49,10 @@ interface ObjectConfigInterface
      *
      * @param string $name The property name
      *
-     * @return mixed The property value
-     *
      * @throws InvalidArgumentException
      * @throws BadMethodCallException   When the data is empty
+     *
+     * @return mixed The property value
      */
     public function getProperty($name);
 

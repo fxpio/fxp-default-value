@@ -25,29 +25,29 @@ abstract class AbstractBaseExtensionTest extends TestCase
      */
     protected $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         throw new \LogicException('The setUp() method must be overridden');
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->extension = null;
     }
 
-    public function testHasType()
+    public function testHasType(): void
     {
         $this->assertTrue($this->extension->hasType('Fxp\Component\DefaultValue\Tests\Fixtures\Object\User'));
         $this->assertFalse($this->extension->hasType('Foo'));
     }
 
-    public function testHasTypeExtension()
+    public function testHasTypeExtension(): void
     {
         $this->assertTrue($this->extension->hasTypeExtensions('Fxp\Component\DefaultValue\Tests\Fixtures\Object\User'));
         $this->assertFalse($this->extension->hasTypeExtensions('Foo'));
     }
 
-    public function testGetType()
+    public function testGetType(): void
     {
         $type = $this->extension->getType('Fxp\Component\DefaultValue\Tests\Fixtures\Object\User');
 
@@ -55,22 +55,21 @@ abstract class AbstractBaseExtensionTest extends TestCase
         $this->assertEquals('Fxp\Component\DefaultValue\Tests\Fixtures\Object\User', $type->getClass());
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
-     */
-    public function testGetUnexistingType()
+    public function testGetUnexistingType(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\InvalidArgumentException::class);
+
         $this->extension->getType('Foo');
     }
 
-    public function testGetTypeExtension()
+    public function testGetTypeExtension(): void
     {
         $exts = $this->extension->getTypeExtensions('Fxp\Component\DefaultValue\Tests\Fixtures\Object\User');
 
         $this->assertInternalType('array', $exts);
         $this->assertCount(1, $exts);
 
-        /* @var ObjectTypeExtensionInterface $ext */
+        /** @var ObjectTypeExtensionInterface $ext */
         $ext = $exts[0];
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectTypeExtensionInterface', $ext);
         $this->assertEquals('Fxp\Component\DefaultValue\Tests\Fixtures\Object\User', $ext->getExtendedType());

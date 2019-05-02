@@ -87,7 +87,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
      */
     public function hasProperty($name)
     {
-        return \in_array($name, $this->properties);
+        return \in_array($name, $this->properties, true);
     }
 
     /**
@@ -103,16 +103,16 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         $methodHas = 'has'.ucfirst($name);
         $methodIs = 'is'.ucfirst($name);
 
-        if (\in_array($methodGet, $this->methods)) {
-            return $this->getData()->$methodGet();
+        if (\in_array($methodGet, $this->methods, true)) {
+            return $this->getData()->{$methodGet}();
         }
 
-        if (\in_array($methodHas, $this->methods)) {
-            return $this->getData()->$methodHas();
+        if (\in_array($methodHas, $this->methods, true)) {
+            return $this->getData()->{$methodHas}();
         }
 
-        if (\in_array($methodIs, $this->methods)) {
-            return $this->getData()->$methodIs();
+        if (\in_array($methodIs, $this->methods, true)) {
+            return $this->getData()->{$methodIs}();
         }
 
         if (!$this->hasProperty($name)) {
@@ -153,7 +153,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
      */
     public function hasOption($name)
     {
-        return array_key_exists($name, $this->options);
+        return \array_key_exists($name, $this->options);
     }
 
     /**
@@ -228,8 +228,8 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
         foreach ($properties as $property => $value) {
             $methodSet = 'set'.ucfirst($property);
 
-            if (\in_array($methodSet, $this->methods)) {
-                $this->getData()->$methodSet($value);
+            if (\in_array($methodSet, $this->methods, true)) {
+                $this->getData()->{$methodSet}($value);
             } else {
                 $refProp = $this->findReflectionProperty($property, $refClass);
                 $refProp->setValue($this->getData(), $value);
@@ -258,7 +258,7 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
      *
      * @param \ReflectionClass $reflection
      */
-    protected function findProperties(\ReflectionClass $reflection)
+    protected function findProperties(\ReflectionClass $reflection): void
     {
         if (false !== $reflection->getParentClass()) {
             $this->findProperties($reflection->getParentClass());
@@ -273,9 +273,9 @@ class ObjectConfigBuilder implements ObjectConfigBuilderInterface
      * @param string           $property
      * @param \ReflectionClass $reflection
      *
-     * @return \ReflectionProperty
-     *
      * @throws InvalidArgumentException When the property is not found
+     *
+     * @return \ReflectionProperty
      */
     protected function findReflectionProperty($property, \ReflectionClass $reflection)
     {

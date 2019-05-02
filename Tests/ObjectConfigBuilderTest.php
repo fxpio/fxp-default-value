@@ -22,15 +22,17 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class ObjectConfigBuilderTest extends TestCase
+final class ObjectConfigBuilderTest extends TestCase
 {
     /**
      * @var ObjectConfigBuilderInterface
      */
     protected $config;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $options = [
             'username' => 'foo',
@@ -42,29 +44,28 @@ class ObjectConfigBuilderTest extends TestCase
         $this->config->setType($rType);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->config = null;
     }
 
-    public function testGetObjectConfig()
+    public function testGetObjectConfig(): void
     {
         $config = $this->config->getObjectConfig();
 
         $this->assertEquals($this->config, $config);
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
-     */
-    public function testGetObjectConfigWithConfigLocked()
+    public function testGetObjectConfigWithConfigLocked(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\BadMethodCallException::class);
+
         $this->config->getObjectConfig();
 
         $this->config->getObjectConfig();
     }
 
-    public function testGetType()
+    public function testGetType(): void
     {
         $type = $this->config->getType();
 
@@ -72,7 +73,7 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooCompletType', $type->getInnerType());
     }
 
-    public function testSetType()
+    public function testSetType(): void
     {
         $type = $this->config->getType();
 
@@ -88,25 +89,24 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\Tests\Fixtures\Type\FooType', $type2->getInnerType());
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
-     */
-    public function testSetTypeWithConfigLocked()
+    public function testSetTypeWithConfigLocked(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\BadMethodCallException::class);
+
         $rType = new ResolvedObjectType(new FooType());
 
         $this->config->getObjectConfig();
         $this->config->setType($rType);
     }
 
-    public function testGetOptions()
+    public function testGetOptions(): void
     {
         $opts = $this->config->getOptions();
 
         $this->assertInternalType('array', $opts);
     }
 
-    public function testHasAndGetOption()
+    public function testHasAndGetOption(): void
     {
         $this->assertTrue($this->config->hasOption('username'));
         $this->assertEquals('foo', $this->config->getOption('username', 'default value'));
@@ -118,15 +118,14 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertEquals('default value', $this->config->getOption('invalidProperty', 'default value'));
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
-     */
-    public function testSetInvalidData()
+    public function testSetInvalidData(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\InvalidArgumentException::class);
+
         $this->config->setData(42);
     }
 
-    public function testSetValidData()
+    public function testSetValidData(): void
     {
         $data = new User('root', 'p@ssword');
         $config = $this->config->setData($data);
@@ -136,11 +135,10 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertEquals(\get_class($data), $this->config->getDataClass());
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
-     */
-    public function testSetValidDataWithConfigLocked()
+    public function testSetValidDataWithConfigLocked(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\BadMethodCallException::class);
+
         $data = new User('root', 'p@ssword');
         $this->config->setData($data);
         $this->config->getObjectConfig();
@@ -148,7 +146,7 @@ class ObjectConfigBuilderTest extends TestCase
         $this->config->setData($data);
     }
 
-    public function testGetProperties()
+    public function testGetProperties(): void
     {
         $data = new User('root', 'p@ssword');
         $this->config->setData($data);
@@ -158,7 +156,7 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertCount(9, $properties);
     }
 
-    public function testGetProperty()
+    public function testGetProperty(): void
     {
         $data = new User('root', 'p@ssword');
         $this->config->setData($data);
@@ -173,29 +171,27 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertFalse($this->config->getProperty('foo'));
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
-     */
-    public function testGetPropertyWithEmptyData()
+    public function testGetPropertyWithEmptyData(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\BadMethodCallException::class);
+
         $this->assertNull($this->config->getData());
         $this->assertNull($this->config->getDataClass());
 
         $this->config->getProperty('property');
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
-     */
-    public function testGetInvalidProperty()
+    public function testGetInvalidProperty(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\InvalidArgumentException::class);
+
         $data = new User('root', 'p@ssword');
         $this->config->setData($data);
 
         $this->config->getProperty('invalidField');
     }
 
-    public function testSetProperties()
+    public function testSetProperties(): void
     {
         $data = new Foobar();
         $data->setBar('hello world');
@@ -207,9 +203,9 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertFalse($this->config->getProperty('privateProperty'));
 
         $config = $this->config->setProperties([
-                'bar' => 'value edited',
-                'customField' => '21',
-                'privateProperty' => true,
+            'bar' => 'value edited',
+            'customField' => '21',
+            'privateProperty' => true,
         ]);
 
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectConfigBuilderInterface', $config);
@@ -218,11 +214,10 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertTrue($this->config->getProperty('privateProperty'));
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
-     */
-    public function testSetPropertiesWithConfigLocked()
+    public function testSetPropertiesWithConfigLocked(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\BadMethodCallException::class);
+
         $data = new Foobar();
         $this->config->setData($data);
         $this->config->getObjectConfig();
@@ -232,11 +227,10 @@ class ObjectConfigBuilderTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
-     */
-    public function testSetPropertiesWithEmptyData()
+    public function testSetPropertiesWithEmptyData(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\BadMethodCallException::class);
+
         $this->assertNull($this->config->getData());
         $this->assertNull($this->config->getDataClass());
 
@@ -245,11 +239,10 @@ class ObjectConfigBuilderTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
-     */
-    public function testSetPropertiesWithInvalidClassProperty()
+    public function testSetPropertiesWithInvalidClassProperty(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\InvalidArgumentException::class);
+
         $data = new Foobar();
         $this->config->setData($data);
 
@@ -258,7 +251,7 @@ class ObjectConfigBuilderTest extends TestCase
         ]);
     }
 
-    public function testSetProperty()
+    public function testSetProperty(): void
     {
         $data = new Foobar();
         $data->setBar('hello world');
@@ -272,11 +265,10 @@ class ObjectConfigBuilderTest extends TestCase
         $this->assertEquals('value edited', $data->getBar());
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\BadMethodCallException
-     */
-    public function testSetPropertyWithEmptyData()
+    public function testSetPropertyWithEmptyData(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\BadMethodCallException::class);
+
         $this->assertNull($this->config->getData());
         $this->assertNull($this->config->getDataClass());
 

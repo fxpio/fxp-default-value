@@ -24,15 +24,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class ObjectFactoryTest extends TestCase
+final class ObjectFactoryTest extends TestCase
 {
     /**
      * @var ObjectFactoryInterface
      */
     protected $factory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $exts = [
             new PreloadedExtension([
@@ -45,12 +47,12 @@ class ObjectFactoryTest extends TestCase
         $this->factory = new ObjectFactory($registry, new ResolvedObjectTypeFactory());
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->factory = null;
     }
 
-    public function testCreateBuilderWithObjectTypeInstance()
+    public function testCreateBuilderWithObjectTypeInstance(): void
     {
         $type = new FooCompletType();
         $type->configureOptions(new OptionsResolver());
@@ -64,7 +66,7 @@ class ObjectFactoryTest extends TestCase
         $this->assertEquals('hello world', $instance->getBar());
     }
 
-    public function testCreateBuilderWithObjectTypeInstanceWithSpecialValueOfBarField()
+    public function testCreateBuilderWithObjectTypeInstanceWithSpecialValueOfBarField(): void
     {
         $type = new FooCompletType();
         $type->configureOptions(new OptionsResolver());
@@ -75,7 +77,7 @@ class ObjectFactoryTest extends TestCase
         $this->assertEquals('42', $instance->getBar());
     }
 
-    public function testCreateBuilderWithObjectTypeInstanceAndData()
+    public function testCreateBuilderWithObjectTypeInstanceAndData(): void
     {
         $type = new FooCompletType();
         $type->configureOptions(new OptionsResolver());
@@ -87,7 +89,7 @@ class ObjectFactoryTest extends TestCase
         $this->assertEquals('hello world', $instance->getBar());
     }
 
-    public function testCreateBuilderWithObjectTypeInstanceAndDataWithValueInField()
+    public function testCreateBuilderWithObjectTypeInstanceAndDataWithValueInField(): void
     {
         $type = new FooCompletType();
         $type->configureOptions(new OptionsResolver());
@@ -100,7 +102,7 @@ class ObjectFactoryTest extends TestCase
         $this->assertEquals('has value', $instance->getBar());
     }
 
-    public function testCreateBuilderWithObjectTypeInstanceAndDataWithValueInFieldWithSpecialValueOfBarField()
+    public function testCreateBuilderWithObjectTypeInstanceAndDataWithValueInFieldWithSpecialValueOfBarField(): void
     {
         $type = new FooCompletType();
         $type->configureOptions(new OptionsResolver());
@@ -113,18 +115,17 @@ class ObjectFactoryTest extends TestCase
         $this->assertEquals('42', $instance->getBar());
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
-    public function testCreateBuilderWithObjectTypeInstanceWithoutOptions()
+    public function testCreateBuilderWithObjectTypeInstanceWithoutOptions(): void
     {
+        $this->expectException(\Symfony\Component\OptionsResolver\Exception\InvalidOptionsException::class);
+
         $type = new FooCompletType();
         $type->configureOptions(new OptionsResolver());
 
         $this->factory->createBuilder($type);
     }
 
-    public function testCreateBuilderWithString()
+    public function testCreateBuilderWithString(): void
     {
         $builder = $this->factory->createBuilder('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, ['bar' => 'hello world']);
 
@@ -136,15 +137,14 @@ class ObjectFactoryTest extends TestCase
         $this->assertEquals('hello world', $instance->getBar());
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\UnexpectedTypeException
-     */
-    public function testCreateBuilderWithTypeIsNotAResolvedObjectTypeInstance()
+    public function testCreateBuilderWithTypeIsNotAResolvedObjectTypeInstance(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\UnexpectedTypeException::class);
+
         $this->factory->createBuilder(42);
     }
 
-    public function testCreateObject()
+    public function testCreateObject(): void
     {
         $instance = $this->factory->create('Fxp\Component\DefaultValue\Tests\Fixtures\Object\Foo', null, ['bar' => 'hello world']);
 
@@ -152,7 +152,7 @@ class ObjectFactoryTest extends TestCase
         $this->assertEquals('hello world', $instance->getBar());
     }
 
-    public function testCreateObjectWithData()
+    public function testCreateObjectWithData(): void
     {
         $data = new Foo();
         $data->setBar('has value');
@@ -162,7 +162,7 @@ class ObjectFactoryTest extends TestCase
         $this->assertEquals('has value', $instance->getBar());
     }
 
-    public function testInjectDefaultValueInObject()
+    public function testInjectDefaultValueInObject(): void
     {
         $data = new Foo();
         $instance = $this->factory->inject($data, ['bar' => 'hello world']);
@@ -171,11 +171,10 @@ class ObjectFactoryTest extends TestCase
         $this->assertEquals('hello world', $instance->getBar());
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\UnexpectedTypeException
-     */
-    public function testInjectDefaultValueInNonObject()
+    public function testInjectDefaultValueInNonObject(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\UnexpectedTypeException::class);
+
         $this->factory->inject(42);
     }
 }

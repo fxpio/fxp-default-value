@@ -134,7 +134,7 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
     /**
      * {@inheritdoc}
      */
-    public function buildObject(ObjectBuilderInterface $builder, array $options)
+    public function buildObject(ObjectBuilderInterface $builder, array $options): void
     {
         $this->doActionObject('buildObject', $builder, $options);
     }
@@ -142,7 +142,7 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
     /**
      * {@inheritdoc}
      */
-    public function finishObject(ObjectBuilderInterface $builder, array $options)
+    public function finishObject(ObjectBuilderInterface $builder, array $options): void
     {
         $this->doActionObject('finishObject', $builder, $options);
     }
@@ -177,17 +177,17 @@ class ResolvedObjectType implements ResolvedObjectTypeInterface
      * @param ObjectBuilderInterface $builder
      * @param array                  $options
      */
-    protected function doActionObject($method, ObjectBuilderInterface $builder, array $options)
+    protected function doActionObject($method, ObjectBuilderInterface $builder, array $options): void
     {
         if (null !== $this->parent) {
-            $this->parent->$method($builder, $options);
+            $this->parent->{$method}($builder, $options);
         }
 
-        $this->innerType->$method($builder, $options);
+        $this->innerType->{$method}($builder, $options);
 
         foreach ($this->typeExtensions as $extension) {
             /* @var ObjectTypeExtensionInterface $extension */
-            $extension->$method($builder, $options);
+            $extension->{$method}($builder, $options);
         }
     }
 }

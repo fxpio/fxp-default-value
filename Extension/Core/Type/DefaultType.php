@@ -31,7 +31,7 @@ class DefaultType extends AbstractSimpleType
     /**
      * {@inheritdoc}
      */
-    public function getParent()
+    public function getParent(): void
     {
     }
 }

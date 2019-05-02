@@ -65,7 +65,7 @@ final class User implements AdvancedUserInterface
     /**
      * {@inheritdoc}
      */
-    public function getSalt()
+    public function getSalt(): void
     {
     }
 
@@ -112,14 +112,14 @@ final class User implements AdvancedUserInterface
     /**
      * {@inheritdoc}
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
     }
 
     /**
      * @param string $value
      */
-    public function setCustomField($value)
+    public function setCustomField($value): void
     {
         $this->customField = $value;
     }

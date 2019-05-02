@@ -21,20 +21,22 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class ObjectBuilderTest extends TestCase
+final class ObjectBuilderTest extends TestCase
 {
     /**
      * @var ObjectBuilderInterface
      */
     protected $builder;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $options = [
             'bar' => 'hello world',
         ];
-        /* @var ObjectFactoryInterface $factory */
+        /** @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $type = new FooCompletType();
         $rType = new ResolvedObjectType($type);
@@ -43,17 +45,17 @@ class ObjectBuilderTest extends TestCase
         $this->builder->setType($rType);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->builder = null;
     }
 
-    public function testGetObjectFactory()
+    public function testGetObjectFactory(): void
     {
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryInterface', $this->builder->getObjectFactory());
     }
 
-    public function testGetObjectWithoutData()
+    public function testGetObjectWithoutData(): void
     {
         $instance = $this->builder->getObject();
 
@@ -61,12 +63,12 @@ class ObjectBuilderTest extends TestCase
         $this->assertEquals('hello world', $instance->getBar());
     }
 
-    public function testGetObjectWithoutDataWithEditionOnFinishMethod()
+    public function testGetObjectWithoutDataWithEditionOnFinishMethod(): void
     {
         $options = [
             'bar' => 'the answer to life, the universe, and everything',
         ];
-        /* @var ObjectFactoryInterface $factory */
+        /** @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $type = new FooCompletType();
         $rType = new ResolvedObjectType($type);
@@ -80,7 +82,7 @@ class ObjectBuilderTest extends TestCase
         $this->assertEquals('42', $instance->getBar());
     }
 
-    public function testGetObjectWithData()
+    public function testGetObjectWithData(): void
     {
         $data = new Foo();
         $data->setBar('new value');
@@ -91,7 +93,7 @@ class ObjectBuilderTest extends TestCase
         $this->assertEquals('new value', $instance->getBar());
     }
 
-    public function testGetObjectWithDataWithEditionOnFinishMethod()
+    public function testGetObjectWithDataWithEditionOnFinishMethod(): void
     {
         $data = new Foo();
         $data->setBar('the answer to life, the universe, and everything');

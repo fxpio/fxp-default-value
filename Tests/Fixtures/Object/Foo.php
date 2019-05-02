@@ -31,7 +31,7 @@ class Foo
     /**
      * @param string $value
      */
-    public function setBar($value)
+    public function setBar($value): void
     {
         $this->bar = $value;
     }

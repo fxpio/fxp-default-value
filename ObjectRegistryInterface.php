@@ -25,9 +25,9 @@ interface ObjectRegistryInterface
      *
      * @param string $classname The class name of the type
      *
-     * @return ResolvedObjectTypeInterface The type
-     *
      * @throws Exception\UnexpectedTypeException If the passed name is not a string
+     *
+     * @return ResolvedObjectTypeInterface The type
      */
     public function getType($classname);
 

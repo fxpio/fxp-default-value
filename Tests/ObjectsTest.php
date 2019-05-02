@@ -16,17 +16,19 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class ObjectsTest extends TestCase
+final class ObjectsTest extends TestCase
 {
-    public function testObjectFactoryBuilderCreator()
+    public function testObjectFactoryBuilderCreator(): void
     {
         $of = Objects::createObjectFactoryBuilder();
 
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryBuilderInterface', $of);
     }
 
-    public function testObjectFactoryCreator()
+    public function testObjectFactoryCreator(): void
     {
         $of = Objects::createObjectFactory();
 

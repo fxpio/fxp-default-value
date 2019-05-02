@@ -21,27 +21,29 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class ObjectFactoryBuilderTest extends TestCase
+final class ObjectFactoryBuilderTest extends TestCase
 {
     /**
      * @var ObjectFactoryBuilderInterface
      */
     protected $builder;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->builder = new ObjectFactoryBuilder();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->builder = null;
     }
 
-    public function testSetResolvedObjectTypeFactory()
+    public function testSetResolvedObjectTypeFactory(): void
     {
-        /* @var ResolvedObjectTypeFactoryInterface $typeFactory */
+        /** @var ResolvedObjectTypeFactoryInterface $typeFactory */
         $typeFactory = $this->getMockBuilder('Fxp\Component\DefaultValue\ResolvedObjectTypeFactoryInterface')->getMock();
 
         $builder = $this->builder->setResolvedTypeFactory($typeFactory);
@@ -49,9 +51,9 @@ class ObjectFactoryBuilderTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
-    public function testAddExtension()
+    public function testAddExtension(): void
     {
-        /* @var ObjectExtensionInterface $ext */
+        /** @var ObjectExtensionInterface $ext */
         $ext = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectExtensionInterface')->getMock();
 
         $builder = $this->builder->addExtension($ext);
@@ -59,7 +61,7 @@ class ObjectFactoryBuilderTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
-    public function testAddExtensions()
+    public function testAddExtensions(): void
     {
         $exts = [
             $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectExtensionInterface')->getMock(),
@@ -70,9 +72,9 @@ class ObjectFactoryBuilderTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
-    public function testAddType()
+    public function testAddType(): void
     {
-        /* @var ObjectTypeInterface $type */
+        /** @var ObjectTypeInterface $type */
         $type = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectTypeInterface')->getMock();
 
         $builder = $this->builder->addType($type);
@@ -80,7 +82,7 @@ class ObjectFactoryBuilderTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
-    public function testAddTypes()
+    public function testAddTypes(): void
     {
         $types = [
             $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectTypeInterface')->getMock(),
@@ -91,9 +93,9 @@ class ObjectFactoryBuilderTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
-    public function testAddTypeExtension()
+    public function testAddTypeExtension(): void
     {
-        /* @var ObjectTypeExtensionInterface $ext */
+        /** @var ObjectTypeExtensionInterface $ext */
         $ext = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectTypeExtensionInterface')->getMock();
 
         $builder = $this->builder->addTypeExtension($ext);
@@ -101,7 +103,7 @@ class ObjectFactoryBuilderTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
-    public function testAddTypeExtensions()
+    public function testAddTypeExtensions(): void
     {
         $exts = [
             $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectTypeExtensionInterface')->getMock(),
@@ -112,9 +114,9 @@ class ObjectFactoryBuilderTest extends TestCase
         $this->assertInstanceOf('Fxp\Component\DefaultValue\ObjectFactoryBuilderInterface', $builder);
     }
 
-    public function testGetObjectFactory()
+    public function testGetObjectFactory(): void
     {
-        /* @var ObjectTypeInterface $type */
+        /** @var ObjectTypeInterface $type */
         $type = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectTypeInterface')->getMock();
         $this->builder->addType($type);
 

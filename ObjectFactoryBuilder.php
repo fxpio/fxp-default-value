@@ -83,7 +83,7 @@ class ObjectFactoryBuilder implements ObjectFactoryBuilderInterface
      */
     public function addTypes(array $types)
     {
-        /* @var ObjectTypeInterface $type */
+        /** @var ObjectTypeInterface $type */
         foreach ($types as $type) {
             $this->types[$type->getClass()] = $type;
         }
@@ -106,7 +106,7 @@ class ObjectFactoryBuilder implements ObjectFactoryBuilderInterface
      */
     public function addTypeExtensions(array $typeExtensions)
     {
-        /* @var ObjectTypeExtensionInterface $typeExtension */
+        /** @var ObjectTypeExtensionInterface $typeExtension */
         foreach ($typeExtensions as $typeExtension) {
             $this->typeExtensions[$typeExtension->getExtendedType()][] = $typeExtension;
         }

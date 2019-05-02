@@ -27,12 +27,12 @@ interface ResolvedObjectTypeFactoryInterface
      *
      * @param ObjectTypeInterface              $type
      * @param array                            $typeExtensions
-     * @param ResolvedObjectTypeInterface|null $parent
-     *
-     * @return ResolvedObjectTypeInterface
+     * @param null|ResolvedObjectTypeInterface $parent
      *
      * @throws Exception\UnexpectedTypeException  When unexpected type of argument
      * @throws Exception\InvalidArgumentException When the object default value type classname does not exist
+     *
+     * @return ResolvedObjectTypeInterface
      */
     public function createResolvedType(ObjectTypeInterface $type, array $typeExtensions, ResolvedObjectTypeInterface $parent = null);
 }

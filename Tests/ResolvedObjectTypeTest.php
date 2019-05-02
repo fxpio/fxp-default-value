@@ -22,34 +22,35 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @author François Pluchino <francois.pluchino@gmail.com>
+ *
+ * @internal
  */
-class ResolvedObjectTypeTest extends TestCase
+final class ResolvedObjectTypeTest extends TestCase
 {
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\InvalidArgumentException
-     */
-    public function testClassUnexist()
+    public function testClassUnexist(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\InvalidArgumentException::class);
+
         $type = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectTypeInterface')->getMock();
         $type->expects($this->any())
             ->method('getClass')
-            ->will($this->returnValue('Fxp\Component\DefaultValue\Tests\Fixtures\Object\UnexistClass'));
+            ->will($this->returnValue('Fxp\Component\DefaultValue\Tests\Fixtures\Object\UnexistClass'))
+        ;
 
         /* @var ObjectTypeInterface $type */
         new ResolvedObjectType($type);
     }
 
-    /**
-     * @expectedException \Fxp\Component\DefaultValue\Exception\UnexpectedTypeException
-     */
-    public function testWrongExtensions()
+    public function testWrongExtensions(): void
     {
+        $this->expectException(\Fxp\Component\DefaultValue\Exception\UnexpectedTypeException::class);
+
         $type = new UserType();
 
         new ResolvedObjectType($type, ['wrong_extension']);
     }
 
-    public function testBasicOperations()
+    public function testBasicOperations(): void
     {
         $parentType = new DefaultType();
         $type = new UserType();
@@ -67,10 +68,10 @@ class ResolvedObjectTypeTest extends TestCase
         $this->assertInstanceOf('Symfony\Component\OptionsResolver\OptionsResolver', $options);
     }
 
-    public function testInstanceBuilder()
+    public function testInstanceBuilder(): void
     {
         $rType = $this->getResolvedType();
-        /* @var ObjectFactoryInterface $factory */
+        /** @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $builder = $rType->createBuilder($factory, []);
 
@@ -87,13 +88,13 @@ class ResolvedObjectTypeTest extends TestCase
         $this->assertEquals('password', $instance->getPassword());
     }
 
-    public function testInstanceBuilderWithDefaultType()
+    public function testInstanceBuilderWithDefaultType(): void
     {
         $type = new FooType();
         $parentType = new DefaultType($type->getClass());
         $rType = new ResolvedObjectType($type, [], new ResolvedObjectType($parentType));
 
-        /* @var ObjectFactoryInterface $factory */
+        /** @var ObjectFactoryInterface $factory */
         $factory = $this->getMockBuilder('Fxp\Component\DefaultValue\ObjectFactoryInterface')->getMock();
         $builder = $rType->createBuilder($factory, []);
 

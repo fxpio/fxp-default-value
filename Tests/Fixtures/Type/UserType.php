@@ -27,12 +27,12 @@ class UserType extends AbstractType
         return new $class($options['username'], $options['password']);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-                'username' => 'test',
-                'password' => 'password',
-            ]);
+            'username' => 'test',
+            'password' => 'password',
+        ]);
     }
 
     public function getClass()

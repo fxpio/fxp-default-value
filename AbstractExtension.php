@@ -108,7 +108,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
      *
      * @throws UnexpectedTypeException if any registered type is not an instance of ObjectTypeInterface
      */
-    private function initTypes()
+    private function initTypes(): void
     {
         $this->types = [];
 
@@ -127,7 +127,7 @@ abstract class AbstractExtension implements ObjectExtensionInterface
      * @throws UnexpectedTypeException if any registered type extension is not
      *                                 an instance of ObjectTypeExtensionInterface
      */
-    private function initTypeExtensions()
+    private function initTypeExtensions(): void
     {
         $this->typeExtensions = [];
 
